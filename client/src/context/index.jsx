@@ -4,6 +4,7 @@ import {
   useAddress,
   useContract,
   useMetamask,
+  // useConnect,
   useContractWrite,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
@@ -21,6 +22,7 @@ export const StateContextProvider = ({ children }) => {
   );
 
   const address = useAddress();
+  // const { connect } = useConnect();
   const connect = useMetamask();
 
   const publishCampaign = async (form) => {
