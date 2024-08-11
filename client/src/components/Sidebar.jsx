@@ -48,7 +48,7 @@ const Sidebar = () => {
             />
           ))}
         </div>
-        <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} />
+        {/* <Icon styles="bg-[#1c1c24] shadow-secondary" imgUrl={sun} /> */}
       </div>
     </div>
   );
