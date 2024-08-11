@@ -1,6 +1,5 @@
 require("@matterlabs/hardhat-zksync-solc");
 
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   zksolc: {
     version: "1.3.9",
@@ -12,6 +11,7 @@ module.exports = {
     },
   },
   networks: {
+    hardhat: {},
     zksync_testnet: {
       url: "https://zksync2-testnet.zksync.dev",
       ethNetwork: "goerli",
@@ -24,6 +24,10 @@ module.exports = {
       chainId: 324,
       zksync: true,
     },
+    FantomTestnet: {
+      url: "https://rpc.testnet.fantom.network/",
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+    },
   },
   paths: {
     artifacts: "./artifacts-zk",
@@ -33,14 +37,6 @@ module.exports = {
   },
   solidity: {
     version: "0.8.17",
-    defaultNetworks: "mumbai",
-    networks: {
-      hardhat: {},
-      mumbai: {
-        url: "https://rpc-mumbai.maticvigil.com",
-        accounts: [`0x${process.env.PRIVATE_KEY}`],
-      },
-    },
     settings: {
       optimizer: {
         enabled: true,
@@ -48,4 +44,5 @@ module.exports = {
       },
     },
   },
+  defaultNetwork: "FantomTestnet",
 };
