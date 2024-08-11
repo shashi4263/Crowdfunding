@@ -34,7 +34,7 @@ const FundCard = ({
             className="w-[17px] h-[17px] object-contain"
           />
           <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">
-            Education
+            Campaign
           </p>
         </div>
 

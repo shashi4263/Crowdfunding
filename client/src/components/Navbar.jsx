@@ -10,8 +10,17 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  // const address = "0xabc";
   const { connect, address } = useStateContext();
+
+  const handleConnect = () => {
+    if (typeof window.ethereum !== "undefined") {
+      connect();
+    } else {
+      alert(
+        "MetaMask is required to use this application. Please install MetaMask."
+      );
+    }
+  };
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -36,11 +45,14 @@ const Navbar = () => {
       <div className="sm:flex hidden flex-row justify-end gap-4">
         <CustomButton
           btnType="button"
-          title={address ? "Cerate a Campaign" : "Connect"}
+          title={address ? "Create a Campaign" : "Connect"}
           styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
           handleClick={() => {
-            if (address) navigate("create-campaign");
-            else connect();
+            if (address) {
+              navigate("create-campaign");
+            } else {
+              handleConnect();
+            }
           }}
         />
         <Link to="/profile">
@@ -86,7 +98,7 @@ const Navbar = () => {
               <li
                 key={link.name}
                 className={`flex p-4 ${
-                  isActive === link.name && "bg-[#3a3a43"
+                  isActive === link.name && "bg-[#3a3a43]"
                 }`}
                 onClick={() => {
                   setIsActive(link.name);
@@ -113,11 +125,14 @@ const Navbar = () => {
           <div className="flex mx-4">
             <CustomButton
               btnType="button"
-              title={address ? "Cerate a Campaign" : "Connect"}
+              title={address ? "Create a Campaign" : "Connect"}
               styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
               handleClick={() => {
-                if (address) navigate("create-campaign");
-                else Connect();
+                if (address) {
+                  navigate("create-campaign");
+                } else {
+                  handleConnect();
+                }
               }}
             />
           </div>

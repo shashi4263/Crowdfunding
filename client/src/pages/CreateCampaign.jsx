@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 
@@ -20,12 +20,27 @@ const CreateCampaign = () => {
     image: "",
   });
 
+  useEffect(() => {
+    if (typeof window.ethereum === "undefined") {
+      alert(
+        "MetaMask is required to use this application. Please install MetaMask."
+      );
+    }
+  }, []);
+
   const handleFormFieldChange = (fieldName, e) => {
     setForm({ ...form, [fieldName]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (typeof window.ethereum === "undefined") {
+      alert(
+        "MetaMask is required to submit a campaign. Please install MetaMask."
+      );
+      return;
+    }
 
     checkIfImage(form.image, async (exists) => {
       if (exists) {
@@ -37,7 +52,7 @@ const CreateCampaign = () => {
         setIsLoading(false);
         navigate("/");
       } else {
-        alert("Provide valid image URL");
+        alert("Provide a valid image URL");
         setForm({ ...form, image: "" });
       }
     });
